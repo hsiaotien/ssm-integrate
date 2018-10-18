@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+	<!-- 整合,将sqlsessionfactory对象,交给spring管理 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:mybatis/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<!-- mapper.xml 和 别名 交给spring -->
+		<property name="mapperLocations"
+			value="classpath:mybatis/mapper/*.xml" />
+		<property name="typeAliasesPackage" value="com.dev.pojo" />
+	</bean>
+
+	<!-- 实例化接口 -->
+	<!-- <bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+				abstract="true" lazy-init="true">
+			<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		</bean> 
+		<bean id="userMapper" parent="baseMapper"> <property name="mapperInterface" 
+		value="com.dev.dao.UserMapper" /> </bean> -->
+	<!-- 按上述方法每一个接口都需要配置来实例化,非常繁琐. 将接口扫描交给spring,被扫描加载 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+			value="com.dev.dao" />
+		<!-- optional unless there are multiple session factories defined -->
+		<property name="sqlSessionFactoryBeanName"
+			value="sqlSessionFactory" />
+	</bean>
+</beans>
