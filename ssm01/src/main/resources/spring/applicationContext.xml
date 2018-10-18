@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util 
+	http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- 引入外部数据源并配置连接池 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<bean >
+	
+	</bean>
+	
+	<!-- 传统方式,在mybatis-config中配置数据源,和连接池, 并配置mapper .
+	
+	使用spring整合,将sql工厂对象,接口对象都交给spring管理
+	
+	在此处先回顾,mybatis的配置步骤:1.全局配置mybatis-config ,2.mapper映射的配置,3.接口,4.pojo,5.测试
+	
+	这里先用传统的mybatis实现 -->
+
+</beans>
